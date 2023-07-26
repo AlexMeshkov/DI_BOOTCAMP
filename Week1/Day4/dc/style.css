@@ -1,0 +1,17 @@
+.item {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    margin : 5px;
+    border: 2px solid black;
+}
+
+#container {
+    display : flex;
+    justify-content: space-between;
+}
+
+#center {
+    display: flex;
+    align-items: center;
+}
