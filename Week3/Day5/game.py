@@ -1,10 +1,11 @@
-import random
-
 class Game:
-    get_user_item(self, rock , papper, scissors):
-        input ('Please select an item (rock/paper/scissors)')
-        self.rock = rock
-        self.papper = papper
-        self.scissors = scissors
+    # lst_choice = ["self", "rock", "papper", "scissors"]
+    @staticmethod
+    def get_user_item():
+        item = (
+            input("Please select an item ((r)rock, (p)paper, (s)scissors)")
+            .strip()
+            .lower[0]
+        )
 
-    
+    return item
