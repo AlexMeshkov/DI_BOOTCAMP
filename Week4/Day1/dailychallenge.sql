@@ -17,7 +17,7 @@ select count(*) from actors;
 INSERT INTO actors(first_name, last_name, age, number_oscars)
 VALUES ('Ryan', 'Gosling', '1980-11-12', 0);
 
-select count(*) from actors;
+-- select count(*) from actors;
 
 -- INSERT INTO actors(first_name, last_name, number_oscars)
 -- VALUES ('Cillian', 'Murphy',  0);
