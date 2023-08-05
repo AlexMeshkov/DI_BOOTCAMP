@@ -33,6 +33,24 @@ clock = pygame.time.Clock()
 img = pygame.image.load("bg.jpg").convert()
 
 
+def detect_collision(dx, dy, ball, rect):
+    if dx > 0:
+        delta_x = ball.right - rect.left
+    else:
+        delta_x = rect.right - ball.left
+    if dy > 0:
+        delta_y = ball.bottom - rect.top
+    else:
+        delta_y = rect.bottom - ball.top
+    if abs(delta_x - delta_y) < 10:
+        dx, dy = -dx, -dy
+    elif delta_x > delta_y:
+        dy = -dy
+    elif delta_y > delta_x:
+        dx = -dx
+    return dx, dy
+
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -56,7 +74,26 @@ while True:
         dy = -dy
     # collision paddle
     if ball.colliderect(paddle) and dy > 0:
-        dy = -dy
+        dy, dy = detect_collision(dx, dy, ball, paddle)
+
+    # collision blocks
+
+    hit_index = ball.collidelist(block_list)
+    if hit_index != -1:
+        hit_rect = block_list.pop(hit_index)
+        hit_color = color_list.pop(hit_index)
+        dx, dy = detect_collision(dx, dy, ball, hit_rect)
+        # special effect
+        hit_rect.inflate_ip(ball.width * 3, ball.height * 3)
+        pygame.draw.rect(sc, hit_color, hit_rect)
+        fps += 1
+    # win, game over
+    if ball.bottom > HEIGHT:
+        print("GAME OVER!!!")
+        exit()
+    elif not len(block_list):
+        print("YOU WIN!!!")
+        exit()
 
     # control
 
