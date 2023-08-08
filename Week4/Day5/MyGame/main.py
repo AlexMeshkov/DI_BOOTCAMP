@@ -2,10 +2,10 @@ import pygame
 from random import randrange as rnd
 
 WIDTH, HEIGHT = 1200, 800
-fps = 60
+fps = 70
 
 # paddle sitting
-paddle_w = 330
+paddle_w = 400
 paddle_h = 35
 paddle_speed = 15
 paddle = pygame.Rect(
@@ -13,7 +13,7 @@ paddle = pygame.Rect(
 )
 
 # ball setting
-ball_radius = 20
+ball_radius = 40
 ball_speed = 7
 ball_rect = int(ball_radius * 2**0.5)
 ball = pygame.Rect(rnd(ball_rect, WIDTH - ball_rect), HEIGHT // 2, ball_rect, ball_rect)
@@ -29,7 +29,7 @@ color_list = [
 pygame.init()
 sc = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
-# bacground
+# background
 img = pygame.image.load("bg.jpg").convert()
 
 
