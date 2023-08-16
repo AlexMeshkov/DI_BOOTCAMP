@@ -25,6 +25,18 @@ class Author(models.Model):
     # null - by default, null values are not allowed
 
 
+class ImageProfile(models.Model):
+    person = models.OneToOneField(
+        Person,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    image = models.URLField()
+
+    def __str__(self):
+        return f"ImageProfile of {self.person}"
+
+
 # Shell commands
 # to access the parent's model connected instances
 # bill.post_set.all() <- get all posts of Bill

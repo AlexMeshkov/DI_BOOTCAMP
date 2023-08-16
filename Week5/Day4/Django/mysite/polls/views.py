@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Author, Post
 
 
 # Create your views here.
@@ -9,9 +10,12 @@ def index(request):
 
 
 def post(request, post_id: int):
-    data = {1: "This is 1st post", 2: "Second post"}
-    post = data.get(post_id, "no such post")
-    return HttpResponse(post)
+    try:
+        post = Post.objects.get(id = post_id)
+        content = f"Author":{post.Author.name}| Title: {post.title} | Text:{post.text}
+      # data = {1: "This is 1st post", 2: "Second post"}
+      # post = data.get(post_id, "no such post")
+        return HttpResponse(post)
 
 
 def about(request):
